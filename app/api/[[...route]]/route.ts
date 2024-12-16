@@ -4,16 +4,11 @@ import {Hono} from "hono";
 import {handle} from "hono/vercel";
 //import {clerkMiddleware, getAuth} from "@hono/clerk-auth";
 
-
-import books from './books'
-import authors from "./authors";
-
 export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-app.route('/authors', authors)
-app.route('/books', books)
+app.get('/hello', (c) => c.json({hello: 'world'}));
 
 
 export const GET = handle(app);
